@@ -1,5 +1,5 @@
 listaProdutos = []
-valorProdutos = []
+
 
 print("----------------------Cadastrar Produto----------------------")
 while True:
@@ -9,24 +9,28 @@ while True:
     produtoCadastrado['Valor'] = float(input(f"Digite o valor do(a) {produtoCadastrado['Nome']}: R$ "))
     produtoCadastrado['Quantidade'] = int(input("Informe também a quantidade: "))
 
-    valorProdutos.append(produtoCadastrado['Valor'])
     listaProdutos.append(produtoCadastrado)
     print(produtoCadastrado)
-    finalizar_programa = input("Deseja sair: (S/N)")
+    finalizar_programa = input("Deseja sair: (S/N): ")
+    print("-------------------------------------------------------------------------------------")
     if finalizar_programa.upper() == "S":
         break
 
+def quantidadeEstoque(produtos):
+    somaQtd = 0
+    for produto in produtos:
+        somaQtd += produto['Quantidade']
+    return f"Total de produtos no estoque: {somaQtd}"
 
 
-def somaValorProdutos(valorProdutos):
-    soma = 0
-    for valor in valorProdutos:
-        soma += valor
-    return f"O valor total dos produtos é de R${soma}" 
+def somaValorProdutos(produtos):
+    valorTotal = 0
+    for produto in produtos:
+        valorTotal += produto['Quantidade'] * produto['Valor']
+        
+    return f"O valor total dos produtos é de R${valorTotal}" 
 
-print(somaValorProdutos(valorProdutos))
+print(somaValorProdutos(listaProdutos))
+print(quantidadeEstoque(listaProdutos))
 
-print("\nProdutos cadastrados:")
-for produto in listaProdutos:
-    print(produto)
-it
+
